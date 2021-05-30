@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import Product from "./components/Product/Product";
-
+import ProductList from "./components/ProductList/ProductList";
+import Main from "./components/Main/Main";
 class App extends React.Component {
   state = {
     products: [
@@ -30,6 +30,7 @@ class App extends React.Component {
     products[productIndex] = product;
     this.setState({ products: products });
   };
+
   toggleProductHandler = () => {
     const show = this.state.showProducts;
     this.setState({ showProducts: !show });
@@ -41,40 +42,21 @@ class App extends React.Component {
     this.setState({ products: products });
   }
   render() {
-    const btn = {
-      backgroundColor: "#7b1fa2",
-      color: "#fff",
-      font: "inherit",
-      border: "none",
-      outline: "none",
-      borderRadius: "3px",
-      padding: ".6rem",
-      margin: ".6rem auto",
-    };
     let products = null;
     if (this.state.showProducts) {
       products = (
         <div>
-          {this.state.products.map((item, index) => {
-            return (
-              <Product
-                title={item.title}
-                price={item.price}
-                click={() => this.deleteProductHandler(index)}
-                key={item.id}
-                change={(event) => this.chageTitleHandler(event, item.id)}
-              />
-            );
-          })}
+          <ProductList
+            products={this.state.products}
+            click={this.deleteProductHandler}
+            change={this.chageTitleHandler}
+          />
         </div>
       );
     }
     return (
       <div className="center">
-        <h1>Book store</h1>
-        <button style={btn} onClick={this.toggleProductHandler}>
-          show/hide products
-        </button>
+        <Main click={this.toggleProductHandler} />
         {products}
       </div>
     );
