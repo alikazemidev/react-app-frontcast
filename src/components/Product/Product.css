@@ -1,0 +1,9 @@
+.product {
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #e4e1e1;
+  box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  width: 50%;
+}
