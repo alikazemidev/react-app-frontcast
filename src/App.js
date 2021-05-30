@@ -20,13 +20,15 @@ class App extends React.Component {
     });
   };
 
-  chageTitleHandler = (e) => {
-    this.setState({
-      products: [
-        { title: e.target.value, price: 50 },
-        { title: "book  2", price: 60 },
-      ],
+  chageTitleHandler = (event, id) => {
+    const productIndex = this.state.products.findIndex((item) => {
+      return item.id === id;
     });
+    const product = { ...this.state.products[productIndex] };
+    product.title = event.target.value;
+    const products = [...this.state.products];
+    products[productIndex] = product;
+    this.setState({ products: products });
   };
   toggleProductHandler = () => {
     const show = this.state.showProducts;
@@ -60,6 +62,7 @@ class App extends React.Component {
                 price={item.price}
                 click={() => this.deleteProductHandler(index)}
                 key={item.id}
+                change={(event) => this.chageTitleHandler(event, item.id)}
               />
             );
           })}

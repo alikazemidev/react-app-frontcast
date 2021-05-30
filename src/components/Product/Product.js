@@ -5,8 +5,8 @@ const Product = (props) => {
   return (
     <div className="product">
       <p onClick={props.click}>product name : {props.title} </p>
-      <p >product name : {props.price} </p>
-      <input type="text" onChange={props.change} />
+      <p>product name : {props.price} </p>
+      <input type="text" onChange={props.change} value={props.title} />
     </div>
   );
 };
